@@ -1,0 +1,20 @@
+@import "tailwindcss";
+
+/* 1. Define the colors for Light Mode */
+:root {
+  --site-bg: #fafafa;    /* zinc-50 */
+  --site-text: #09090b;  /* zinc-950 */
+}
+
+/* 2. Define the colors for Dark Mode */
+.dark {
+  --site-bg: #09090b;    /* zinc-950 */
+  --site-text: #fafafa;  /* zinc-50 */
+}
+
+/* 3. Force the body to use these colors */
+body {
+  background-color: var(--site-bg) !important;
+  color: var(--site-text) !important;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
