@@ -1,73 +1,83 @@
-# React + TypeScript + Vite
+# 🚀 Personal Portfolio & Web Development Capstone
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, responsive Personal Portfolio website built to showcase my skills, projects, and education. This project serves as my **Web Development Capstone** submission, integrating advanced frontend concepts, local storage management, and interactive React components.
 
-Currently, two official plugins are available:
+🔗 **Live Demo:** [INSERT_YOUR_VERCEL_LINK_HERE]
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## 📋 Project Overview
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+This Single Page Application (SPA) combines three key project requirements into one cohesive experience:
+1.  **Resume/Portfolio Website:** A fully responsive layout with About, Skills, Education, and Contact sections.
+2.  **Contact Manager (SPA):** A live demo section where users can add contacts dynamically.
+3.  **Interactive React Components:** Reusable project cards with independent state management (Like/Unlike functionality).
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## ✨ Key Features
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### 1. 🎨 UI/UX & Theming
+* **Dark/Light Mode:** Fully functional theme toggle that persists user preference via `localStorage`.
+* **Responsive Design:** Optimized for mobile, tablet, and desktop views.
+* **Animations:** Smooth page transitions and hover effects using **Framer Motion**.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### 2. 📬 Contact Form & Data Retrieval
+* **Data Storage:** Contact form submissions are saved locally using **Browser LocalStorage** (JSON format).
+* **Admin Dashboard:** A hidden admin panel to view received messages.
+* **Secure-ish Login:** Admin section is protected by a hardcoded authentication check.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### 3. 🧩 Interactive Components
+* **Dynamic Project Cards:** Reusable components that accept props for title, image, and tech stack.
+* **Like Button Logic:** Each project card has an independent `useState` hook to handle its "Liked" status.
+* **Live Contact Directory:** Users can add new contacts to a list instantly without page reloads (demonstrating React State updates).
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 🛠️ Tech Stack
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+* **Frontend Framework:** React 19 + TypeScript
+* **Build Tool:** Vite
+* **Styling:** Tailwind CSS v4
+* **Animations:** Framer Motion
+* **Icons:** Lucide React
+
+---
+
+## 🚀 Getting Started (Run Locally)
+
+Follow these steps to run the project on your local machine:
+
+1.  **Clone the repository**
+    ```bash
+    git clone [https://github.com/YOUR_USERNAME/keshav-portfolio.git](https://github.com/YOUR_USERNAME/keshav-portfolio.git)
+    cd keshav-portfolio
+    ```
+
+2.  **Install Dependencies**
+    ```bash
+    npm install
+    ```
+
+3.  **Start the Development Server**
+    ```bash
+    npm run dev
+    ```
+
+4.  **Open in Browser**
+    Visit `http://localhost:5173` to view the app.
+
+---
+
+##  Project Structure
+
+```text
+src/
+├── components/        # Reusable UI components
+│   ├── ContactCard.tsx
+│   ├── ProjectCard.tsx
+│   └── ResponseCard.tsx
+├── App.tsx           # Main application logic & layout
+├── index.css         # Tailwind imports & global styles
+└── main.tsx          # React entry point
+public/               # Static assets (images)
