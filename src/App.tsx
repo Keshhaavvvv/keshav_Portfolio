@@ -44,7 +44,7 @@ const projects: Project[] = [
     description: "Dynamic SPA for managing user contacts with live updates, modular architecture, and parent-child component communication.",
     techStack: ["React", "TypeScript", "Tailwind", "Framer Motion"],
     image: "/images/project2.jpg",
-    link: "https://github.com/Keshhaavvvv" 
+    link: "https://github.com/Keshhaavvvv/keshav_Portfolio" 
   },
   {
     id: 3,
@@ -52,7 +52,7 @@ const projects: Project[] = [
     description: "React component featuring props, useState for toggling liked status, and smooth animations. Featured in this very portfolio.",
     techStack: ["React", "useState", "Lucide Icons"],
     image: "/images/project7.jpg",
-    link: "https://github.com/Keshhaavvvv" 
+    link: "https://github.com/Keshhaavvvv/keshav_Portfolio" 
   },
   {
   id: 4,
