@@ -1,12 +1,12 @@
-# 🚀 Personal Portfolio & Web Development Capstone
+#  Personal Portfolio & Web Development Capstone
 
 A modern, responsive Personal Portfolio website built to showcase my skills, projects, and education. This project serves as my **Web Development Capstone** submission, integrating advanced frontend concepts, local storage management, and interactive React components.
 
-🔗 **Live Demo:** [https://keshav-portfolio-gold.vercel.app/]
+ **Live Demo:** [https://keshav-portfolio-gold.vercel.app/]
 
 ---
 
-## 📋 Project Overview
+##  Project Overview
 
 This Single Page Application (SPA) combines three key project requirements into one cohesive experience:
 1.  **Resume/Portfolio Website:** A fully responsive layout with About, Skills, Education, and Contact sections.
@@ -15,26 +15,26 @@ This Single Page Application (SPA) combines three key project requirements into 
 
 ---
 
-## ✨ Key Features
+##  Key Features
 
-### 1. 🎨 UI/UX & Theming
+### 1.  UI/UX & Theming
 * **Dark/Light Mode:** Fully functional theme toggle that persists user preference via `localStorage`.
 * **Responsive Design:** Optimized for mobile, tablet, and desktop views.
 * **Animations:** Smooth page transitions and hover effects using **Framer Motion**.
 
-### 2. 📬 Contact Form & Data Retrieval
+### 2.  Contact Form & Data Retrieval
 * **Data Storage:** Contact form submissions are saved locally using **Browser LocalStorage** (JSON format).
 * **Admin Dashboard:** A hidden admin panel to view received messages.
 * **Secure-ish Login:** Admin section is protected by a hardcoded authentication check.
 
-### 3. 🧩 Interactive Components
+### 3.  Interactive Components
 * **Dynamic Project Cards:** Reusable components that accept props for title, image, and tech stack.
 * **Like Button Logic:** Each project card has an independent `useState` hook to handle its "Liked" status.
 * **Live Contact Directory:** Users can add new contacts to a list instantly without page reloads (demonstrating React State updates).
 
 ---
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 * **Frontend Framework:** React 19 + TypeScript
 * **Build Tool:** Vite
@@ -44,7 +44,7 @@ This Single Page Application (SPA) combines three key project requirements into 
 
 ---
 
-## 🚀 Getting Started (Run Locally)
+##  Getting Started (Run Locally)
 
 Follow these steps to run the project on your local machine:
 
