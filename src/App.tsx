@@ -81,6 +81,14 @@ const projects: Project[] = [
 ];
 
 function App() {
+  // 1. Name: Allows letters and spaces only, minimum 2 characters
+  const isNameValid = (name: string) => /^[a-zA-Z\s]{2,}$/.test(name);
+
+// 2. Email: Must follow user@domain.com format
+  const isEmailValid = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+// 3. Phone: Must be exactly 10 digits (standard Indian format)
+  const isPhoneValid = (phone: string) => /^\d{10}$/.test(phone);
   // 1. Initialize Theme State Correctly (Lazy Initialization)
   const [darkMode, setDarkMode] = useState(() => {
     const savedTheme = localStorage.getItem('theme');
@@ -478,9 +486,9 @@ function App() {
               
               <div className="mt-12 text-xs uppercase tracking-widest text-zinc-500">HOW TO USE</div>
               <div className="mt-4 space-y-2 text-sm text-zinc-400">
-                <div>1. Fill the form below</div>
-                <div>2. Click ADD CONTACT</div>
-                <div>3. Watch the magic</div>
+                <div>1. Fill the form (Valid Name, Email & 10-digit Phone)</div>
+                <div>2. Click ADD TO DIRECTORY</div>
+                <div>3. Watch your card appearing</div>
               </div>
             </div>
 
@@ -488,13 +496,15 @@ function App() {
               <div className="bg-zinc-950 border border-zinc-800 rounded-3xl p-10">
                 <form onSubmit={addContact} className="space-y-6">
                   <div>
-                    <label className="text-xs tracking-[1px] text-zinc-500 block mb-2">FULL NAME</label>
+                    <label className="text-xs tracking-[1px] text-zinc-500 block mb-2">FULL NAME (Letters Only)</label>
                     <input 
                       type="text" 
                       value={newContact.name}
-                      onChange={(e) => setNewContact({...newContact, name: e.target.value})}
-                      placeholder="last middle first" 
-                      className="w-full bg-transparent border-b border-zinc-700 pb-4 text-3xl placeholder:text-zinc-700 focus:outline-none" 
+                      onChange={(e) => setNewContact({...newContact, name: e.target.value.replace(/[^a-zA-Z\s]/g, '')})}
+                      placeholder="First Last" 
+                      className={`w-full bg-transparent border-b pb-4 text-3xl focus:outline-none transition-colors ${
+                        newContact.name && !isNameValid(newContact.name) ? 'border-red-500' : 'border-zinc-700'
+                      }`} 
                     />
                   </div>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -504,25 +514,30 @@ function App() {
                         type="email" 
                         value={newContact.email}
                         onChange={(e) => setNewContact({...newContact, email: e.target.value})}
-                        placeholder="@gmail.com" 
-                        className="w-full bg-transparent border-b border-zinc-700 pb-4 text-xl placeholder:text-zinc-700 focus:outline-none" 
+                        placeholder="example@gmail.com" 
+                        className={`w-full bg-transparent border-b pb-4 text-xl focus:outline-none transition-colors ${
+                          newContact.email && !isEmailValid(newContact.email) ? 'border-red-500' : 'border-zinc-700'
+                        }`} 
                       />
                     </div>
                     <div>
-                      <label className="text-xs tracking-[1px] text-zinc-500 block mb-2">PHONE NUMBER</label>
+                      <label className="text-xs tracking-[1px] text-zinc-500 block mb-2">PHONE (10 Digits)</label>
                       <input 
                         type="tel" 
+                        maxLength={10}
                         value={newContact.phone}
-                        onChange={(e) => setNewContact({...newContact, phone: e.target.value})}
-                        placeholder="+91" 
-                        className="w-full bg-transparent border-b border-zinc-700 pb-4 text-xl placeholder:text-zinc-700 focus:outline-none" 
+                        onChange={(e) => setNewContact({...newContact, phone: e.target.value.replace(/\D/g, '')})}
+                        placeholder="9876543210" 
+                        className={`w-full bg-transparent border-b pb-4 text-xl focus:outline-none transition-colors ${
+                          newContact.phone && !isPhoneValid(newContact.phone) ? 'border-red-500' : 'border-zinc-700'
+                        }`} 
                       />
                     </div>
                   </div>
 
                   <button 
                     type="submit" 
-                    disabled={!newContact.name || !newContact.email || !newContact.phone}
+                    disabled={!isNameValid(newContact.name) || !isEmailValid(newContact.email) || !isPhoneValid(newContact.phone)}
                     className="mt-4 w-full py-4 rounded-full bg-white text-black font-medium disabled:bg-zinc-800 disabled:text-zinc-500 hover:bg-zinc-200 transition flex items-center justify-center gap-3"
                   >
                     ADD TO DIRECTORY
@@ -536,16 +551,17 @@ function App() {
                   {contacts.length > 0 ? (
                     contacts.map((contact) => (
                       <ContactCard 
-                        key={contact.id} 
-                        id={contact.id} 
-                        name={contact.name} 
-                        email={contact.email} 
-                        phone={contact.phone} 
-                        onDelete={deleteContact} 
-                      />
+  key={contact.id} 
+  id={contact.id} 
+  isAdmin={isLoggedIn} // This tells the card if you are logged in
+  name={contact.name} 
+  email={contact.email} 
+  phone={contact.phone} 
+  onDelete={deleteContact} 
+/>
                     ))
                   ) : (
-                    <div className="col-span-2 py-16 border border-dashed border-zinc-800 rounded-3xl flex flex-col items-center justify-center text-center">
+                    <div className="col-span-full py-16 border border-dashed border-zinc-800 rounded-3xl flex flex-col items-center justify-center text-center">
                       <div className="text-6xl mb-4 opacity-40">👋</div>
                       <div className="text-xl text-zinc-400">No contacts yet.<br />Add some above.</div>
                     </div>

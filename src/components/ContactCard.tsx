@@ -1,5 +1,5 @@
 import React from 'react';
-import { User, Mail, Phone, Trash2 } from 'lucide-react';
+import { User, Mail, Phone, Trash2 } from 'lucide-react'; // Note: You can keep Trash2
 import { motion } from 'framer-motion';
 
 interface ContactCardProps {
@@ -8,12 +8,14 @@ interface ContactCardProps {
   email: string;
   phone: string;
   onDelete: (id: number) => void;
+  isAdmin?: boolean;
 }
 
-const ContactCard: React.FC<ContactCardProps> = ({ id, name, email, phone, onDelete }) => {
+// 1. ADD isAdmin HERE in the brackets:
+const ContactCard: React.FC<ContactCardProps> = ({ id, name, email, phone, onDelete, isAdmin }) => {
   return (
     <motion.div 
-      className="bg-white dark:bg-zinc-900 p-6 rounded-3xl border border-zinc-200 dark:border-zinc-800 flex flex-col"
+      className="bg-white dark:bg-zinc-900 p-6 rounded-3xl border border-zinc-200 dark:border-zinc-800 flex flex-col relative" // Added 'relative' for better button positioning
       initial={{ opacity: 0, scale: 0.92 }}
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 0.92 }}
@@ -41,12 +43,15 @@ const ContactCard: React.FC<ContactCardProps> = ({ id, name, email, phone, onDel
         </div>
       </div>
       
-      <button 
-        onClick={() => onDelete(id)}
-        className="mt-6 self-end flex items-center gap-2 text-xs text-red-500 hover:text-red-600 dark:text-red-400 dark:hover:text-red-500 transition-colors"
-      >
-        <Trash2 className="w-3.5 h-3.5" /> REMOVE
-      </button>
+      {/* 2. WRAP THE REMOVE BUTTON IN THIS LOGIC: */}
+      {isAdmin && (
+        <button 
+          onClick={() => onDelete(id)}
+          className="mt-6 self-end flex items-center gap-2 text-xs text-red-500 hover:text-red-600 dark:text-red-400 dark:hover:text-red-500 transition-colors"
+        >
+          <Trash2 className="w-3.5 h-3.5" /> REMOVE
+        </button>
+      )}
     </motion.div>
   );
 };
